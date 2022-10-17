@@ -1,9 +1,9 @@
-#include <fstream>
-#include <iostream>
-#include <regex>
-#include <sstream>
-#include <string>
-#include <map>
+#include "fstream"
+#include "iostream"
+#include "regex"
+#include "sstream"
+#include "string"
+#include "map"
 
 void getMaterials(std::string path, std::vector<std::vector<std::string>> &materials){
 	std::ifstream file(path);
@@ -29,7 +29,7 @@ void getMaterials(std::string path, std::vector<std::vector<std::string>> &mater
 	}
 }
 
-void makeFloors(std::string path, std::vector<std::vector<std::string>> &materials){
+void makeFloors(std::string path, std::vector<std::vector<std::string>> &materials, std::string outputPath){
 	std::ifstream file(path);
 	std::string line;
 	std::string parsed;
@@ -42,7 +42,6 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 			pos2 = line.find(" ", pos);
 			pos3 = line.find(">", pos);
 			defType = line.substr(pos+1, (pos2 < pos3 ? pos2-pos-1 : pos3-pos-1));
-			std::cout << defType << " " << pos << " "<< pos2 << " " << pos3 << std::endl;
 		}
 		if(defType != ""){
 			if(line.find("<"+defType) != std::string::npos){
@@ -55,6 +54,9 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 				while((pos = filename.find("<")) != std::string::npos && (npos = filename.find(">", pos)) != std::string::npos ){filename.replace(pos, npos-pos+1, "");}
 				while((pos = filename.find(" ")) != std::string::npos){filename.replace(pos, 1, "");} //Extract filename. Possible via regex but nah
 				filename += "_MaterialDefs.xml";
+				if(!outputPath.empty()){
+					filename = outputPath + "/" + filename;
+				}
 			}
 			parsed += line + "\n";
 			if(line.find("</"+defType+">") != std::string::npos){
@@ -80,14 +82,11 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 
 int main(int argc, char* argv[])
 {
-	if (argc != 3)
-	{
-		std::cout << "not enough arguments - USAGE: floors.exe materials.txt floors.txt\n";
-		return -1; // invalid number of parameters
-	}
-
+	const char* matFile = argc > 1 ? argv[1] : "materials.txt";
+	const char* floorFile = argc > 2 ? argv[2] : "floors.txt";
+	const char* outputPath = argc > 3 ? argv[3] : "output";
     std::vector<std::vector<std::string>> materials = std::vector<std::vector<std::string>>();
-	getMaterials(argv[1], materials);
-	makeFloors(argv[2], materials);
+	getMaterials(matFile, materials);
+	makeFloors(floorFile, materials, outputPath);
 	return 0;
 }

@@ -1,4 +1,5 @@
-run with 'floors.exe materials.txt floors.txt', or specify other input files.
+run with 'floors.exe materialsfile floorsfile outputpath', or specify other input files.
+Defaults to 'floors.exe materials.txt floors.txt output'.
 
 Tool to automatically generate TerrainDefs (and other things).
 Basically a glorified find/replace/copy tool.
