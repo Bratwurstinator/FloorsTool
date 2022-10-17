@@ -1,0 +1,13 @@
+Tool to automatically generate TerrainDefs (and other things).
+Basically a glorified find/replace/copy tool.
+
+The first input file, materials.txt consists of columns and lines.
+For each line of this file, a copy of each TerrainDef will be made.
+For each column, the relevant Token (which is in line 1 of the column) will be replaced by the entry in the line.
+For example, '[NOUN]' might be replaced by 'Sandstone' for one Def, and by 'Granite' for the next Def
+
+The second input file, floors.txt consists of TerrainDef templates.
+As aforementioned, these will be copied per line, and the tokens will be replaced.
+Each TerrainDef template gets its own file.
+
+Take a look at the included xml files to get an idea of what it does.
