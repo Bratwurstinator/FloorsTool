@@ -1,3 +1,5 @@
+run with *floors.exe materials.txt floors.txt*, or specify other input files.
+
 Tool to automatically generate TerrainDefs (and other things).
 Basically a glorified find/replace/copy tool.
 
