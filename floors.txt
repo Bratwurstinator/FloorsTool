@@ -1,0 +1,17 @@
+    <TerrainDef ParentName="TileStoneBase">
+        <defName>Tile[NOUN]</defName>
+        <label>[LABEL] tile</label>
+        <color>[COLOR]</color>
+        <costList>
+            <[MATERIAL]>4</[MATERIAL]>
+        </costList>
+    </TerrainDef>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>FloorStoneSlabsCCP[NOUN]</defName>
+        <label>stone slabs ([LABEL])</label>
+        <color>[COLOR]</color>
+        <costList>
+            <[MATERIAL]>3</[MATERIAL]>
+        </costList>
+    </TerrainDef>
