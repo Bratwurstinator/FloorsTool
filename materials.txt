@@ -1,6 +1,6 @@
-[NOUN];    [LABEL];   [COLOR];       [MATERIAL]       //For each line, a def will be generated. In doing so, the relevant line 1 token is replaced by the entry in that line
-Sandstone; sandstone; (126,104,94);  BlocksSandstone  //For example, for this line a def will be generated and any '[NOUN]' will be replaced by 'Sandstone'
-Granite;   granite;   (105,95,97);   BlocksGranite    //This will happen once per ThingDef Template in floors.txt
-Limestone; limestone; (158,153,135); BlocksLimestone  //You can add your own columns, and the parser ignores anything after a /.
-Slate;     slate;     (100,100,100); BlocksSlate      //The first argument for the exe should be this file, and the second the floor template file
-Marble;    marble;    (132,135,132); BlocksMarble     //Yes, this is a glorified find/replace/copy program. Do i care? No.
+[NOUN];    [LABEL];   [COLOR];       [MATERIAL]
+Sandstone; sandstone; (126,104,94);  BlocksSandstone
+Granite;   granite;   (105,95,97);   BlocksGranite
+Limestone; limestone; (158,153,135); BlocksLimestone
+Slate;     slate;     (100,100,100); BlocksSlate
+Marble;    marble;    (132,135,132); BlocksMarble

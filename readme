@@ -6,8 +6,14 @@ For each line of this file, a copy of each TerrainDef will be made.
 For each column, the relevant Token (which is in line 1 of the column) will be replaced by the entry in the line.
 For example, '[NOUN]' might be replaced by 'Sandstone' for one Def, and by 'Granite' for the next Def
 
+Cells in a line should be separated by semicolons, spaces are ignored.
+You can add your own columns as well
+
 The second input file, floors.txt consists of TerrainDef templates.
 As aforementioned, these will be copied per line, and the tokens will be replaced.
-Each TerrainDef template gets its own file.
+Each TerrainDef template gets its own output file.
+Line one in that file designates the type of def so the parser can recognize it.
 
 Take a look at the included xml files to get an idea of what it does.
+
+The whole thing is a bit finnicky, so please try to stick to the formatting it's already got

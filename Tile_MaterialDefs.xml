@@ -2,7 +2,7 @@
 <Defs>
 
     <TerrainDef ParentName="TileStoneBase">
-        <defName>TileBlocksSandstoneSandstone</defName>
+        <defName>TileSandstone</defName>
         <label>sandstone tile</label>
         <color>(126,104,94)</color>
         <costList>
@@ -11,7 +11,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TileStoneBase">
-        <defName>TileBlocksSandstoneGranite</defName>
+        <defName>TileGranite</defName>
         <label>granite tile</label>
         <color>(105,95,97)</color>
         <costList>
@@ -20,7 +20,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TileStoneBase">
-        <defName>TileBlocksGraniteLimestone</defName>
+        <defName>TileLimestone</defName>
         <label>limestone tile</label>
         <color>(158,153,135)</color>
         <costList>
@@ -29,7 +29,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TileStoneBase">
-        <defName>TileBlocksLimestoneSlate</defName>
+        <defName>TileSlate</defName>
         <label>slate tile</label>
         <color>(100,100,100)</color>
         <costList>
@@ -38,7 +38,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TileStoneBase">
-        <defName>TileBlocksSlateMarble</defName>
+        <defName>TileMarble</defName>
         <label>marble tile</label>
         <color>(132,135,132)</color>
         <costList>

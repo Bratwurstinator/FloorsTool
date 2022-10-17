@@ -2,7 +2,7 @@
 <Defs>
 
     <TerrainDef ParentName="TFloorBaseStoneSlabs">
-        <defName>FloorStoneSlabsCCPBlocksSandstoneSandstone</defName>
+        <defName>FloorStoneSlabsCCPSandstone</defName>
         <label>stone slabs (sandstone)</label>
         <color>(126,104,94)</color>
         <costList>
@@ -11,7 +11,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TFloorBaseStoneSlabs">
-        <defName>FloorStoneSlabsCCPBlocksSandstoneGranite</defName>
+        <defName>FloorStoneSlabsCCPGranite</defName>
         <label>stone slabs (granite)</label>
         <color>(105,95,97)</color>
         <costList>
@@ -20,7 +20,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TFloorBaseStoneSlabs">
-        <defName>FloorStoneSlabsCCPBlocksGraniteLimestone</defName>
+        <defName>FloorStoneSlabsCCPLimestone</defName>
         <label>stone slabs (limestone)</label>
         <color>(158,153,135)</color>
         <costList>
@@ -29,7 +29,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TFloorBaseStoneSlabs">
-        <defName>FloorStoneSlabsCCPBlocksLimestoneSlate</defName>
+        <defName>FloorStoneSlabsCCPSlate</defName>
         <label>stone slabs (slate)</label>
         <color>(100,100,100)</color>
         <costList>
@@ -38,7 +38,7 @@
     </TerrainDef>
 
     <TerrainDef ParentName="TFloorBaseStoneSlabs">
-        <defName>FloorStoneSlabsCCPBlocksSlateMarble</defName>
+        <defName>FloorStoneSlabsCCPMarble</defName>
         <label>stone slabs (marble)</label>
         <color>(132,135,132)</color>
         <costList>
