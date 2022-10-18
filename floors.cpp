@@ -5,8 +5,14 @@
 #include "string"
 #include "map"
 
-void getMaterials(std::string path, std::vector<std::vector<std::string>> &materials){
+bool verbose = false;
+
+bool getMaterials(std::string path, std::vector<std::vector<std::string>> &materials){
 	std::ifstream file(path);
+	if(file.bad() || file.fail()){
+		std::cout << "Failed to find materials file" << std::endl;
+		return false;
+	}
 	std::string line;
 	std::string parsed;
 	while (std::getline(file, line))
@@ -27,10 +33,15 @@ void getMaterials(std::string path, std::vector<std::vector<std::string>> &mater
 		COMMENT:
 		materials.push_back(material);
 	}
+	return true;
 }
 
-void makeFloors(std::string path, std::vector<std::vector<std::string>> &materials, std::string outputPath){
+bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materials, std::string outputPath){
 	std::ifstream file(path);
+	if(file.bad() || file.fail()){
+		std::cout << "Failed to find floors file" << std::endl;
+		return false;
+	}
 	std::string line;
 	std::string parsed;
 	std::string filename;
@@ -58,20 +69,25 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 			}
 			parsed += line + "\n";
 			if(line.find("</"+defType+">") != std::string::npos){
-				std::ofstream output(outputPath + "/" + filename);
+				if(outputPath.back() != '/' && outputPath.back() != '/'){
+					outputPath += '/';
+				}
+				std::ofstream output(outputPath + filename);
 				if(output.bad() || output.fail()){
 					if(outputFolderFlag){outputFolderFlag = false; std::cout << "./" << outputPath << " not found, dumping next to the exe";}
 					std::ofstream output(filename);
 				}
 				output << "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" << std::endl << "<Defs>" << std::endl;
-					for(int i = 1; i < materials.size(); i++){
-						int pos;
-						std::string parsed2 = parsed;
-						for(int j = 0; j < materials[i].size(); j++){ //create new def per material
-							while((pos = parsed2.find(materials[0][j])) != std::string::npos){parsed2.replace(pos, materials[0][j].length(), materials[i][j]);}
-						}
-						output << std::endl << parsed2;
+				std::cout << "Creating file at " << outputPath + filename << std::endl;
+				for(int i = 1; i < materials.size(); i++){
+					std::cout << "    Generating Def for " << materials[i][0] << std::endl;
+					int pos;
+					std::string parsed2 = parsed;
+					for(int j = 0; j < materials[i].size(); j++){ //create new def per material
+						while((pos = parsed2.find(materials[0][j])) != std::string::npos){parsed2.replace(pos, materials[0][j].length(), materials[i][j]);}
 					}
+					output << std::endl << parsed2;
+				}
 				output << std::endl << "</Defs>";
 				defType = "";
 			}
@@ -80,16 +96,21 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 	
 }
 
-
-
 int main(int argc, char* argv[])
 {
-	const char* matFile = argc > 1 ? argv[1] : "materials.txt";
-	const char* floorFile = argc > 2 ? argv[2] : "floors.txt";
-	const char* outputPath = argc > 3 ? argv[3] : "output";
+	const char* matFile = argc > 1 ? argv[1] : ".\\materials.txt";
+	const char* floorFile = argc > 2 ? argv[2] : ".\\floors.txt";
+	const char* outputPath = argc > 3 ? argv[3] : ".\\output";
 	
+	std::cout << "Using materials file at " << matFile << std::endl;
     std::vector<std::vector<std::string>> materials = std::vector<std::vector<std::string>>();
-	getMaterials(matFile, materials);
-	makeFloors(floorFile, materials, outputPath);
+	if(!getMaterials(matFile, materials)){
+		return 1;
+	}
+	std::cout << "Using floors file at " << floorFile << std::endl;
+	std::cout << "Outputting to " << outputPath << std::endl;
+	if(makeFloors(floorFile, materials, outputPath)){
+		return 1;
+	}
 	return 0;
 }
