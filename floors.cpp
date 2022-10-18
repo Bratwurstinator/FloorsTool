@@ -36,7 +36,7 @@ bool getMaterials(std::string path, std::vector<std::vector<std::string>> &mater
 	return true;
 }
 
-bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materials, std::string outputPath){
+bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materials){
 	std::ifstream file(path);
 	if(file.bad() || file.fail()){
 		std::cout << "Failed to find floors file" << std::endl;
@@ -46,13 +46,6 @@ bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 	std::string parsed;
 	std::string filename;
 	std::string defType = "";
-	bool outputFolderFlag = true;
-	char separator = ' ';
-	if(outputPath.back() != '\\' && outputPath.back() != '/'){
-		separator = '\\';
-	}
-	outputPath = separator == ' ' ? outputPath : outputPath + separator;
-	std::cout << "Outputting to " << outputPath + filename << std::endl;
 	while (std::getline(file, line))
 	{
 		size_t pos, pos2, pos3;
@@ -76,14 +69,9 @@ bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 			parsed += line + "\n";
 			if(line.find("</"+defType+">") != std::string::npos){
 				
-				std::ofstream output(outputPath + filename);
-				if(output.bad() || output.fail()){
-					if(outputFolderFlag){outputFolderFlag = false; std::cout << outputPath << " not found, dumping next to the exe" << std::endl;}
-					outputPath = ".\\";
-					std::ofstream output(filename);
-				}
+				std::ofstream output(filename);
 				output << "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" << std::endl << "<Defs>" << std::endl;
-				std::cout << "Creating file at " << outputPath + filename << std::endl;
+				std::cout << "Creating file at " << filename << std::endl;
 				for(int i = 1; i < materials.size(); i++){
 					std::cout << "    Generating Def for " << materials[i][0] << std::endl;
 					int pos;
@@ -105,7 +93,6 @@ int main(int argc, char* argv[])
 {
 	const char* matFile = argc > 1 ? argv[1] : ".\\materials.txt";
 	const char* floorFile = argc > 2 ? argv[2] : ".\\floors.txt";
-	const char* outputPath = argc > 3 ? argv[3] : ".\\output";
 	
 	std::cout << "Using materials file at " << matFile << std::endl;
     std::vector<std::vector<std::string>> materials = std::vector<std::vector<std::string>>();
@@ -113,7 +100,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 	std::cout << "Using floors file at " << floorFile << std::endl;
-	if(makeFloors(floorFile, materials, outputPath)){
+	if(makeFloors(floorFile, materials)){
 		return 1;
 	}
 	return 0;
