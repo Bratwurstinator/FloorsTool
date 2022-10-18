@@ -47,6 +47,12 @@ bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 	std::string filename;
 	std::string defType = "";
 	bool outputFolderFlag = true;
+	char separator = ' ';
+	if(outputPath.back() != '\\' && outputPath.back() != '/'){
+		separator = '\\';
+	}
+	outputPath = separator == ' ' ? outputPath : outputPath + separator;
+	std::cout << "Outputting to " << outputPath + filename << std::endl;
 	while (std::getline(file, line))
 	{
 		size_t pos, pos2, pos3;
@@ -69,12 +75,11 @@ bool makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 			}
 			parsed += line + "\n";
 			if(line.find("</"+defType+">") != std::string::npos){
-				if(outputPath.back() != '/' && outputPath.back() != '/'){
-					outputPath += '/';
-				}
+				
 				std::ofstream output(outputPath + filename);
 				if(output.bad() || output.fail()){
-					if(outputFolderFlag){outputFolderFlag = false; std::cout << "./" << outputPath << " not found, dumping next to the exe";}
+					if(outputFolderFlag){outputFolderFlag = false; std::cout << outputPath << " not found, dumping next to the exe" << std::endl;}
+					outputPath = ".\\";
 					std::ofstream output(filename);
 				}
 				output << "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" << std::endl << "<Defs>" << std::endl;
@@ -108,7 +113,6 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 	std::cout << "Using floors file at " << floorFile << std::endl;
-	std::cout << "Outputting to " << outputPath << std::endl;
 	if(makeFloors(floorFile, materials, outputPath)){
 		return 1;
 	}
