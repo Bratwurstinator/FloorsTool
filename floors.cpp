@@ -35,6 +35,7 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 	std::string parsed;
 	std::string filename;
 	std::string defType = "";
+	bool outputFolderFlag = true;
 	while (std::getline(file, line))
 	{
 		size_t pos, pos2, pos3;
@@ -54,13 +55,14 @@ void makeFloors(std::string path, std::vector<std::vector<std::string>> &materia
 				while((pos = filename.find("<")) != std::string::npos && (npos = filename.find(">", pos)) != std::string::npos ){filename.replace(pos, npos-pos+1, "");}
 				while((pos = filename.find(" ")) != std::string::npos){filename.replace(pos, 1, "");} //Extract filename. Possible via regex but nah
 				filename += "_MaterialDefs.xml";
-				if(!outputPath.empty()){
-					filename = outputPath + "/" + filename;
-				}
 			}
 			parsed += line + "\n";
 			if(line.find("</"+defType+">") != std::string::npos){
-				std::ofstream output(filename);
+				std::ofstream output(outputPath + "/" + filename);
+				if(output.bad() || output.fail()){
+					if(outputFolderFlag){outputFolderFlag = false; std::cout << "./" << outputPath << " not found, dumping next to the exe";}
+					std::ofstream output(filename);
+				}
 				output << "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" << std::endl << "<Defs>" << std::endl;
 					for(int i = 1; i < materials.size(); i++){
 						int pos;
@@ -85,6 +87,7 @@ int main(int argc, char* argv[])
 	const char* matFile = argc > 1 ? argv[1] : "materials.txt";
 	const char* floorFile = argc > 2 ? argv[2] : "floors.txt";
 	const char* outputPath = argc > 3 ? argv[3] : "output";
+	
     std::vector<std::vector<std::string>> materials = std::vector<std::vector<std::string>>();
 	getMaterials(matFile, materials);
 	makeFloors(floorFile, materials, outputPath);

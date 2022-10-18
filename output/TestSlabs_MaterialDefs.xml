@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>TestSlabsSandstone</defName>
+        <label>sandstone slabs</label>
+        <color>(126,104,94)</color>
+        <costList>
+            <BlocksSandstone>3</BlocksSandstone>
+        </costList>
+    </TerrainDef>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>TestSlabsGranite</defName>
+        <label>granite slabs</label>
+        <color>(105,95,97)</color>
+        <costList>
+            <BlocksGranite>3</BlocksGranite>
+        </costList>
+    </TerrainDef>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>TestSlabsLimestone</defName>
+        <label>limestone slabs</label>
+        <color>(158,153,135)</color>
+        <costList>
+            <BlocksLimestone>3</BlocksLimestone>
+        </costList>
+    </TerrainDef>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>TestSlabsSlate</defName>
+        <label>slate slabs</label>
+        <color>(100,100,100)</color>
+        <costList>
+            <BlocksSlate>3</BlocksSlate>
+        </costList>
+    </TerrainDef>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>TestSlabsMarble</defName>
+        <label>marble slabs</label>
+        <color>(132,135,132)</color>
+        <costList>
+            <BlocksMarble>3</BlocksMarble>
+        </costList>
+    </TerrainDef>
+
+</Defs>

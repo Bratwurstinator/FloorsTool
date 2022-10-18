@@ -15,3 +15,12 @@
             <[MATERIAL]>3</[MATERIAL]>
         </costList>
     </TerrainDef>
+
+    <TerrainDef ParentName="TFloorBaseStoneSlabs">
+        <defName>TestSlabs[NOUN]</defName>
+        <label>[LABEL] slabs</label>
+        <color>[COLOR]</color>
+        <costList>
+            <[MATERIAL]>3</[MATERIAL]>
+        </costList>
+    </TerrainDef>
