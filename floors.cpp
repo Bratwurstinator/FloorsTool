@@ -19,10 +19,10 @@ bool getMaterials(std::string path, std::vector<std::vector<std::string>> &mater
 	{
 		std::vector<std::string> material;
 		for(int i = 0; i <= line.length(); i++){
-			if(line[i] == '/'){
-				material.push_back(parsed);
-				goto COMMENT; //ignore comments
-			}
+			//if(line[i] == '/'){
+			//	material.push_back(parsed);
+			//	goto COMMENT; //ignore comments
+			//}
 			if(line[i] == ';' || i == line.length()){
 				material.push_back(parsed);
 				parsed = "";
@@ -30,7 +30,7 @@ bool getMaterials(std::string path, std::vector<std::vector<std::string>> &mater
 				parsed += line[i];
 			}
 		}
-		COMMENT:
+		//COMMENT:
 		materials.push_back(material);
 	}
 	return true;
